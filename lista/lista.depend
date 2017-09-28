@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1506553040 source:c:\users\cristhian ocola\desktop\lista\main.cpp
+	<iostream>
+	<lista.h>
+
+1506553176 c:\users\cristhian ocola\desktop\lista\include\lista.h
+	<iostream>
+	"nodo.h"
+
+1506552792 c:\users\cristhian ocola\desktop\lista\include\nodo.h
+	<iostream>
+
+1506553176 source:c:\users\cristhian ocola\desktop\lista\src\lista.cpp
+	"lista.h"
+	<iostream>
+
+1506552792 source:c:\users\cristhian ocola\desktop\lista\src\nodo.cpp
+	"nodo.h"
+
