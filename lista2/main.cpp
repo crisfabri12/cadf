@@ -16,21 +16,19 @@ public:
 template<typename T>
 class Lista{
 public:
-	nodo<T> *head;
-	int num_nodos;
-
+	nodo<T> *h;
 	Lista(T dato_)
 	{
-		head = new nodo<T> (dato_);
-		num_nodos++;
+		h = new nodo<T> (dato_);
 	}
 
 	bool buscar(T dato_, nodo<T>**& nodo_devuelto){
-		nodo<T> **temp=&head;
+		nodo<T> **temp=&h;
 
-		while(*(temp)!=NULL && (*temp)->dato<dato_){
+		while((*temp)!=NULL && (*temp)->dato<dato_){
 			temp=&((*temp)->next);
 		}
+
 		nodo_devuelto=temp;
 		if((*temp)==NULL || (*temp)->dato!=dato_){
 			return false;
@@ -38,45 +36,56 @@ public:
 		return true;
 	}
 
-	void insertar(T dato_){
+	bool insertar(T dato_){
 		nodo<T>** next_insert;
 		if (!buscar(dato_,next_insert)){
 			nodo<T>* aux=new nodo<T>(dato_);
 			aux->next=*next_insert;
 			*next_insert=aux;
+			return 1;
 		}
+		return 0;
 	}
 
-	void borrar(T dato_){
+	bool borrar(T dato_){
 		nodo<T>** nodo_borrar;
 		if (buscar(dato_,nodo_borrar)){
 			nodo<T>* aux= (*nodo_borrar)->next;
 			delete (*nodo_borrar);
 			*nodo_borrar=aux;
+			return 1;
 		}
+		return 0;
+	}
+	void imprimir()
+	{
+	    nodo<int> *temp=h;
+	    while(temp != NULL)
+        {
+            cout<<temp->dato<<" ";
+            temp = temp->next;
+        }
 	}
 };
 
 int main(int argc, char *argv[]) {
 	Lista<int> lista(6);
-	lista.insertar(5);
-	lista.insertar(3);
-	lista.insertar(7);
-	lista.borrar(9);
-	lista.borrar(5);
 
-	nodo<int> *temp=lista.head;
-	while(temp!=NULL){
-		cout<<temp->dato<<", ";
-		temp=temp->next;
-	}cout<<endl;
+    lista.insertar(1);
+    lista.insertar(8);
+    lista.imprimir();
 
-	while(temp!=NULL){
-		temp=lista.head;
-		lista.head=lista.head->next;
-		delete temp;
-	}cout<<endl;
+
+
+
+//
+//	while(temp->next!=temp2){
+//		temp=lista.h;
+//		lista.h=lista.h->next;
+//		delete temp;
+//	}cout<<endl;
 
 
 	return 0;
 }
+
